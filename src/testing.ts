@@ -63,11 +63,7 @@ function run({ trainingData, testingData }: inputData) {
 
   nn.normalizeData();
 
-  nn.train({ epochs: 32 }, () => console.log("klaar")); // 1param: options?, 2param: callback?, 3param: callback
-
-  function saveModel() {
-    nn.save();
-  }
+  nn.train({ epochs: 32 }, classify); // 1param: options?, 2param: callback?, 3param: callback
 
   async function classify() {
     // houd bij hoeveel voorspellingen correct zijn
@@ -90,9 +86,12 @@ function run({ trainingData, testingData }: inputData) {
     const accuracy = (correctPredictions / testingData.length) * 100;
 
     console.log(`Accuracy: ${accuracy}%`);
+
+    const element = document.createElement("div");
+    element.innerHTML = `Accuracy: ${accuracy}%`;
   }
 }
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div></div>
-`;
+document.querySelector<HTMLDivElement>(
+  "#app"
+)!.innerHTML = `<h1>ML Testing</h1>`;

@@ -1,5 +1,5 @@
-# ML training
-This is the project where models get trained on pose data.
+# ML testing
+This is the project where models get assesed on accuracy.
 
 ## Run dev server
 ```sh
