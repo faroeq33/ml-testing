@@ -1,19 +1,14 @@
-import "./index.css";
-import { getTestingData } from "./getData";
+// import "./index.css";
+// import { getTestingData } from "./getData";
+import ReactDOM from "react-dom/client";
+import React from "react";
+import App from "./app.tsx";
+import { loadKNNModel } from "./loadModel.ts";
 
-// @ts-expect-error - no types available
-const nn = ml5.neuralNetwork({ task: "classification", debug: true });
+loadKNNModel();
 
-// model laden
-const modelDetails = {
-  model: "../models/model.json",
-  metadata: "../models/model_meta.json",
-  weights: "../models/model.weights.bin",
-};
-
-nn.load(modelDetails, modelLoaded);
-
-async function modelLoaded() {
+/*
+async function modelLoaded(nn: { classify: () => void }) {
   const testingData = getTestingData();
   console.log("testingData", testingData);
 
@@ -41,7 +36,10 @@ async function modelLoaded() {
   const element = document.createElement("div");
   element.innerHTML = `Accuracy: ${accuracy}%`;
 }
+  */
 
-document.querySelector<HTMLDivElement>(
-  "#app"
-)!.innerHTML = `<h1>ML Testing</h1>`;
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
