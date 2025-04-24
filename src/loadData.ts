@@ -11,7 +11,10 @@ function getData() {
   }
 
   // convert string to object
-  return JSON.parse(trainingData).data;
+  return JSON.parse(trainingData).data as {
+    label: string;
+    vector: number[];
+  }[];
 }
 
 export { getData };
